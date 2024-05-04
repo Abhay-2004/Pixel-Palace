@@ -1,0 +1,68 @@
+/* styles.css */
+
+/* Increase border width for MDBInput */
+.mdb-input {
+    border-width: 2000px !important; /* Adjust the value as needed */
+  }
+  
+  /* Optionally, increase border radius for rounded corners */
+  .mdb-input {
+    border-radius: 1000px !important; /* Adjust the value as needed */
+  }
+
+.card.mb-5 {
+  max-width: 8000px !important; /* Adjusted max-width */
+  padding: 0px !important; /* Adjusted padding */
+  border-radius: 15px !important; /* Added border-radius */
+}
+
+.card-header.py-3 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+  
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartItem {
+  width: 700px;
+  height: 250px;
+  display: flex;
+
+  align-items: center;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  margin: 30px;
+}
+
+
+.cartItem .description {
+  width: 100%;
+  font-size: 30px;
+}
+
+.countHandler input {
+  width: 40px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.checkout button {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(19, 19, 19);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+}
+.card-img-top {
+  width: 30%;
+  height: 70px;
+  object-fit: cover;
+}

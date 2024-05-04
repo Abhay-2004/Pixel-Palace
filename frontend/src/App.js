@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+//authors: prerak@iastate.edu, abhay14@iastate.edu
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { LaptopShop } from "./LaptopShop.js";
+import { Cart } from "./CartView.js";
+import { ShopContextProvider } from "./shop-context.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ShopContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LaptopShop />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </Router>
+      </ShopContextProvider>
     </div>
   );
 }
