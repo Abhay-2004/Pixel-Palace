@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef4"
+  },
+  "id": 1,
+  "name": "iPhone 15",
+  "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=2560&hei=1440&fmt=jpeg&qlt=95&.v=1692846357018",
+  "description": "Next-generation A-series processor for enhanced performance and efficiency, improved camera system for better low-light performance, and 5G connectivity enhancements.",
+  "price": "1199"
+},
+{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef5"
+  },
+  "id": 2,
+  "name": "iPhone 14",
+  "image": "https://m.media-amazon.com/images/I/61ufE2FHl7L.jpg",
+  "description": "Features the A15 Bionic chip, Super Retina XDR display, and dual-camera system with advanced photography features like Photonic Engine for improved low-light performance.",
+  "price": "699"
+},
+{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef6"
+  },
+  "id": 3,
+  "name": "iPhone 13",
+  "image": "https://m.media-amazon.com/images/I/51ysOQMyoGL.jpg",
+  "description": "Powered by the A15 Bionic chip, features a Super Retina XDR display, and dual-camera system with Cinematic mode for depth-of-field transitions in video recording.",
+  "price": "$799"
+},
+{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef7"
+  },
+  "id": 4,
+  "name": "S24+ Smartphone",
+  "image": "https://www.att.com/scmsassets/global/devices/phones/samsung/samsung-galaxy-s24-plus/carousel/cobalt-violet-1.png",
+  "description": "Features next-gen chipset, Dynamic AMOLED 2X display, triple rear camera setup with advanced AI features, and enhanced 5G connectivity.",
+  "price": "$800"
+},
+{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef8"
+  },
+  "id": 5,
+  "name": "Samsung S21 Ultra",
+  "image": "https://www.cnet.com/a/img/resize/3e495e5ec2d57f5893947cb6497fd9f4cf236c4e/hub/2021/01/20/5ac18449-617c-49ba-83f2-2971cb51078c/215-samsung-galaxy-s21-ultra-back.jpg?auto=webp&fit=crop&height=1200&width=1200",
+  "description": "Powered by Exynos 2100 or Snapdragon 888, features a Dynamic AMOLED 2X display, quad rear camera setup, and supports 8K video recording.",
+  "price": "999"
+},
+{
+  "_id": {
+    "$oid": "6636da111937ee8560f3cef9"
+  },
+  "id": 6,
+  "name": "Samsung S20",
+  "image": "https://cdn.mos.cms.futurecdn.net/QToLWt4qcHSjS2zHkeYNtU-1200-80.jpg",
+  "description": "Powered by Exynos 990 or Snapdragon 865, features a Dynamic AMOLED 2X display, triple rear camera setup, and 5G connectivity option.",
+  "price": "899"
+}]

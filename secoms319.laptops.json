@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee2"
+  },
+  "id": 1,
+  "title": "MacBook Pro M3",
+  "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/og-macbook-pro-202310?wid=600&hei=315&fmt=jpeg&qlt=95&.v=1697039356093",
+  "description": "Experience unparalleled performance with the revolutionary M3 chip, featuring a 16-inch Liquid Retina XDR display and up to 64GB of unified memory.",
+  "price": "2399"
+},
+{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee3"
+  },
+  "id": 2,
+  "title": "MacBook Air M2",
+  "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba13-midnight-select-202402?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1708367688034",
+  "description": "Lightweight and powerful with the M2 chip, featuring a 13.6-inch Liquid Retina display and up to 24GB of unified memory for all-day productivity.",
+  "price": "1199"
+},
+{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee4"
+  },
+  "id": 3,
+  "title": "Inspiron 16 Plus",
+  "image": "https://m.media-amazon.com/images/I/71W2wgdUyEL._AC_UF894,1000_QL80_.jpg",
+  "description": "A powerhouse for productivity and multimedia with 11th Gen Intel Core processors, a 16-inch 3K display, and NVIDIA GeForce graphics.",
+  "price": "1299"
+},
+{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee5"
+  },
+  "id": 4,
+  "title": "Latitude 9440 2-in-1",
+  "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-17-9730/media-gallery/notebook-xps-17-9730-t-gray-gallery-5.psd?fmt=pjpg&pscan=auto&scl=1&wid=3500&hei=2059&qlt=100,1&resMode=sharp2&size=3500,2059&chrss=full&imwidth=5000",
+  "description": "Flexibility meets performance with this 2-in-1 laptop, featuring a 14-inch FHD+ touch display, Intel Iris Xe Graphics, and Wi-Fi 6E.",
+  "price": "1549"
+},
+{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee6"
+  },
+  "id": 5,
+  "title": "Dell XPS 17",
+  "image": "https://m.media-amazon.com/images/I/61tq1azswlL._AC_UF894,1000_QL80_DpWeblab_.jpg",
+  "description": "Maximize your creativity and productivity with the XPS 17, featuring up to 11th Gen Intel Core i9 processors, a 17-inch UHD+ touch display, and NVIDIA GeForce RTX graphics.",
+  "price": "1749"
+},
+{
+  "_id": {
+    "$oid": "6636cbb41937ee8560f3cee7"
+  },
+  "id": 6,
+  "title": "Dell XPS 18",
+  "image": "https://i.pcmag.com/imagery/reviews/06mzLuZdPzxJiBkp545YGjr-1..v1569469933.jpg",
+  "description": "Maximize your creativity and productivity with the XPS 17, featuring up to 11th Gen Intel Core i9 processors, a 17-inch UHD+ touch display, and NVIDIA GeForce RTX graphics.",
+  "price": "1749"
+}]
