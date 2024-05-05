@@ -1,6 +1,5 @@
-//authors: prerak@iastate.edu, abhay14@iastate.edu
-import { createContext, useEffect, useState } from "react";
-import laptop  from "./laptops_data.json";
+import { createContext, useState } from 'react';
+import laptop from './laptops_data.json';
 
 export const ShopContext = createContext(null);
 
@@ -51,9 +50,5 @@ export const ShopContextProvider = (props) => {
     checkout,
   };
 
-  return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-    </ShopContext.Provider>
-  );
+  return <ShopContext.Provider value={contextValue}>{props.children}</ShopContext.Provider>;
 };

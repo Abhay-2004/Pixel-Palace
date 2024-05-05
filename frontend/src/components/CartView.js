@@ -1,28 +1,25 @@
-//authors: prerak@iastate.edu, abhay14@iastate.edu
-
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from './shop-context';
 import { useNavigate } from 'react-router-dom';
 import { CartItem } from './cart-item';
-import laptops from './laptops_data.json';
-import './laptops_style.css'
+import '../laptops_style.css';
 import CheckoutModal from './confirmation.js';
 import { Card, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export const Cart = () => {
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = (event) => {
-    
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     setShowModal(true);
   };
-  
-  const [formData, setFormData] = React.useState({
+
+  const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     cardNumber: '',
@@ -33,57 +30,78 @@ export const Cart = () => {
     address2: '',
     city: '',
     state: '',
-    zip: ''
+    zip: '',
   });
 
-  const [errors, setErrors] = React.useState({});
-  const [checkoutFormData, setCheckoutFormData] = React.useState(null);
+  const [errors, setErrors] = useState({});
+  const [checkoutFormData, setCheckoutFormData] = useState(null);
+  const [cartItemsData, setCartItemsData] = useState([]);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const itemPromises = Object.keys(cartItems).map(async (itemId) => {
+          if (itemId.startsWith('laptop_')) {
+            const laptopId = itemId.split('_')[1];
+            const response = await axios.get(`http://localhost:8081/laptops/${laptopId}`);
+            return { ...response.data, id: itemId, quantity: cartItems[itemId] };
+          } else if (itemId.startsWith('phone_')) {
+            const phoneId = itemId.split('_')[1];
+            const response = await axios.get(`http://localhost:8081/phones/${phoneId}`);
+            return { ...response.data, id: itemId, quantity: cartItems[itemId] };
+          }
+        });
+
+        const items = await Promise.all(itemPromises);
+        setCartItemsData(items.filter(Boolean));
+      } catch (error) {
+        console.error('Failed to fetch cart items:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, [cartItems]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-  
-    // Clear the error for the changed field
-    setErrors(prevErrors => ({
+
+    setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: ''
+      [name]: '',
     }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const validationErrors = {};
-  
-    // Email validation
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       validationErrors.email = 'Invalid email address';
     }
-  
-    // Card number validation
+
     const cardRegex = /^[0-9]{16}$/;
     if (!cardRegex.test(formData.cardNumber)) {
       validationErrors.cardNumber = 'Invalid card number';
     }
-  
-    // Zip code validation
+
     const zipRegex = /^[0-9]{5}$/;
     if (!zipRegex.test(formData.zip)) {
       validationErrors.zip = 'Invalid zip code';
     }
-  
-    // Other required fields validation
-    const requiredFields = ['fullName', 'email', 'cardNumber', 'cardName', 'address1', 'city', 'state', 'zip', 'cvv','expiration' ];
-    requiredFields.forEach(field => {
+
+    const requiredFields = ['fullName', 'email', 'cardNumber', 'cardName', 'address1', 'city', 'state', 'zip', 'cvv', 'expiration'];
+    requiredFields.forEach((field) => {
       if (!formData[field]) {
         validationErrors[field] = 'Required';
       }
     });
-  
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -91,90 +109,49 @@ export const Cart = () => {
     setCheckoutFormData(formData);
     handleShowModal(event);
 
-    // Handle form submission (e.g., send data to server)
     console.log('Form submitted:', formData);
   };
-  
-  
 
   return (
     <div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div className="container-fluid">
-          {/* Your navbar content here */}
-          <a className="navbar-brand">
-            <img
-              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/826db7d4-041d-4d4b-b504-396f2cc84c7a/d4hr3a5-bc1bf84b-df9b-4492-ba25-528c37266101.png/v1/fit/w_385,h_384,q_70,strp/pixel_art_icons___my_asus_laptop_by_siberias_d4hr3a5-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9Mzg0IiwicGF0aCI6IlwvZlwvODI2ZGI3ZDQtMDQxZC00ZDRiLWI1MDQtMzk2ZjJjYzg0YzdhXC9kNGhyM2E1LWJjMWJmODRiLWRmOWItNDQ5Mi1iYTI1LTUyOGMzNzI2NjEwMS5wbmciLCJ3aWR0aCI6Ijw9Mzg1In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ekOOyi0YdVqqzk-nprU-o1I6ZNInwLUHg5bFef6wxD0"
-              alt="Pixel Palace Logo"
-              style={{ width: '29px', height: 'auto', marginRight: '20px' }}
-            />
-            Pixel Palace
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav me-auto mb-2 mb-md-0">
-            <li className="nav-item">
-              <Link to="/" className="navbar-link"> Laptops </Link>
-              </li>
-            </ul>
-            <ul className="navbar-nav flex-row-reverse">
-              <li className="nav-item">
-                <button className='cart-link'>
-              <Link to="/cart" className="navbar-link">🛒Cart</Link>
-              </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       <div className="cart">
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '20px' }}>
           <h1>Your Cart Items</h1>
         </div>
         <div className="cart">
-          {laptops.map((laptop) => {
-            if (cartItems[laptop.id] !== 0) {
-              return <CartItem data={laptop} key={laptop.id} />;
-            }
-            return null; // Ensure to return null if the condition is not met
-          })}
+          {cartItemsData.map((item) => (
+            <CartItem key={item.id} data={item} />
+          ))}
         </div>
 
         {totalAmount > 0 ? (
           <div className="checkout">
-            <p> Subtotal: ${totalAmount} </p>
-            <Button variant="primary" type="submit" onClick={() => navigate("/")}> Continue Shopping </Button>{" "}
+            <p>Subtotal: ${totalAmount}</p>
+            <Button variant="primary" type="submit" onClick={() => navigate('/')}>
+              Continue Shopping
+            </Button>{' '}
           </div>
         ) : (
           <h1>Your Shopping Cart is Empty</h1>
         )}
         {checkoutFormData && (
-        <div className="checkout-data">
-          <h2>Checkout Details</h2>
-          <p>Full Name: {checkoutFormData.fullName}</p>
-          <p>Email: {checkoutFormData.email}</p>
-          <p>Address: {checkoutFormData.address1}, {checkoutFormData.city}, {checkoutFormData.state}, {checkoutFormData.zip}</p>
-        </div>
-      )}
+          <div className="checkout-data">
+            <h2>Checkout Details</h2>
+            <p>Full Name: {checkoutFormData.fullName}</p>
+            <p>Email: {checkoutFormData.email}</p>
+            <p>
+              Address: {checkoutFormData.address1}, {checkoutFormData.city}, {checkoutFormData.state}, {checkoutFormData.zip}
+            </p>
+          </div>
+        )}
 
-        <CheckoutModal 
-        show={showModal} 
-        handleClose={handleCloseModal} 
-        cartItems={cartItems} 
-        totalAmount={totalAmount} 
-        checkoutData={checkoutFormData}
-      />
+        <CheckoutModal
+          show={showModal}
+          handleClose={handleCloseModal}
+          cartItems={cartItems}
+          totalAmount={totalAmount}
+          checkoutData={checkoutFormData}
+        />
 
 <Card className="mt-4">
         <Card.Body>

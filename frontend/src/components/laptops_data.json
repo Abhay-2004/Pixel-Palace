@@ -2,49 +2,43 @@
     {
         "id": 1,
         "title": "MacBook Pro M3",
-        "image": "./Images/Laptops/MacBook_Pro_M3.jpg",
+        "image": "./Images/Laptops/Latitude 9440 2-in-1.jpg",
         "description": "Experience unparalleled performance with the revolutionary M3 chip, featuring a 16-inch Liquid Retina XDR display and up to 64GB of unified memory.",
-        "price": "2399",
-        "detailsPage": "./laptops_details/MacBook_Pro_M3.html"
+        "price": "2399"
     },
     {
         "id": 2, 
         "title": "MacBook Air M2",
         "image": "./Images/Laptops/MacBook_Air_M2.jpg",
         "description": "Lightweight and powerful with the M2 chip, featuring a 13.6-inch Liquid Retina display and up to 24GB of unified memory for all-day productivity.",
-        "price": "1199",
-        "detailsPage": "./laptops_details/MacBook_Air_M2.html"
+        "price": "1199"
     },
     {
         "id": 3,
         "title": "Inspiron 16 Plus",
-        "image": "./Images/Laptops/Inspiron_16_Plus_Laptop.jpg",
+        "image": "./Images/Laptops/XPS_17_Laptop.jpg",
         "description": "A powerhouse for productivity and multimedia with 11th Gen Intel Core processors, a 16-inch 3K display, and NVIDIA GeForce graphics.",
-        "price": "1299",
-        "detailsPage": "./laptops_details/Inspiron_16_Plus_Laptop.html"
+        "price": "1299"
     },
     {
         "id": 4,
         "title": "Latitude 9440 2-in-1",
         "image": "./Images/Laptops/Latitude 9440 2-in-1.jpg",
         "description": "Flexibility meets performance with this 2-in-1 laptop, featuring a 14-inch FHD+ touch display, Intel Iris Xe Graphics, and Wi-Fi 6E.",
-        "price": "1549",
-        "detailsPage": "./laptops_details/Latitude_9440_2-in-1.html"
+        "price": "1549"
     },
     {
         "id": 5,
         "title": "Dell XPS 17",
         "image": "./Images/Laptops/XPS_17_Laptop.jpg",
         "description": "Maximize your creativity and productivity with the XPS 17, featuring up to 11th Gen Intel Core i9 processors, a 17-inch UHD+ touch display, and NVIDIA GeForce RTX graphics.",
-        "price": "1749",
-        "detailsPage": "./laptops_details/Dell_XPS_17.html"
+        "price": "1749"
     },
     {
         "id": 6,
         "title": "Dell XPS 18",
         "image": "./Images/Laptops/XPS_17_Laptop3.jpg",
         "description": "Maximize your creativity and productivity with the XPS 17, featuring up to 11th Gen Intel Core i9 processors, a 17-inch UHD+ touch display, and NVIDIA GeForce RTX graphics.",
-        "price": "1749",
-        "detailsPage": "./laptops_details/Dell_XPS_17.html"
+        "price": "1749"
     }
 ]

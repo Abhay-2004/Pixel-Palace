@@ -1,0 +1,50 @@
+[
+    {
+        "id":1,
+        "name": "iPhone 15",
+        "image": "./Images/Phones/iPhone15.jpg",
+        "description": "Next-generation A-series processor for enhanced performance and efficiency, improved camera system for better low-light performance, and 5G connectivity enhancements.",
+        "price": "Starting at $2399",
+        "url": "./iphone15.html"
+    },
+    {
+        "id":2,
+        "name": "iPhone 14",
+        "image": "./Images/Phones/iPhone14.jpg",
+        "description": "Features the A15 Bionic chip, Super Retina XDR display, and dual-camera system with advanced photography features like Photonic Engine for improved low-light performance.",
+        "price": "Starting at $1199",
+        "url": "./iphone14.html"
+    },
+    {
+        "id":3,
+        "name": "iPhone 13",
+        "image": "./Images/Phones/iPhone13.jpg",
+        "description": "Powered by the A15 Bionic chip, features a Super Retina XDR display, and dual-camera system with Cinematic mode for depth-of-field transitions in video recording.",
+        "price": "Starting at $799",
+        "url": "./iphone13.html"
+    },
+    {
+        "id":4,
+        "name": "S24+ Smartphone",
+        "image": "./Images/Phones/S24+.jpg",
+        "description": "Features next-gen chipset, Dynamic AMOLED 2X display, triple rear camera setup with advanced AI features, and enhanced 5G connectivity.",
+        "price": "Contact for price",
+        "url": "./s24plus.html"
+    },
+    {
+        "id":5,
+        "name": "Samsung S21 Ultra",
+        "image": "./Images/Phones/Samsung_S21_Ultra.jpg",
+        "description": "Powered by Exynos 2100 or Snapdragon 888, features a Dynamic AMOLED 2X display, quad rear camera setup, and supports 8K video recording.",
+        "price": "Starting at $1200",
+        "url": "./s21ultra.html"
+    },
+    {
+        "id":6,
+        "name": "Samsung S20",
+        "image": "./Images/Phones/Samsung_S20.jpg",
+        "description": "Powered by Exynos 990 or Snapdragon 865, features a Dynamic AMOLED 2X display, triple rear camera setup, and 5G connectivity option.",
+        "price": "Contact for price",
+        "url": "./s20.html"
+    }
+]

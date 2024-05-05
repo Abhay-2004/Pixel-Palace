@@ -1,0 +1,32 @@
+.footer {
+  background-color: rgba(61, 60, 60, 1);
+  text-align: center; /* Align content horizontally to center */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 50px;
+  color: white;
+  margin-top: auto;
+}
+body {
+  padding-top: 5rem;
+}
+.profile-image {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile {
+  margin-bottom: 20px;
+}
+.about-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.navbar-brand img {
+  height: 30px; 
+  margin-right: 10px;
+}

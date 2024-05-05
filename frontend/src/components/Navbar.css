@@ -1,0 +1,31 @@
+.navbar-dark .navbar-toggler-icon {
+    background-color: white; /* Change background color to white */
+  }
+  
+  .navbar-dark .navbar-nav .nav-link {
+    color: white !important; /* Change text color to white */
+  }
+  
+  .navbar-dark .navbar-nav .nav-link:hover,
+  .navbar-dark .navbar-nav .nav-link:focus {
+    color: #038500 !important; /* Change text color to blue on hover and focus */
+  }
+  
+
+  .cart-link {
+    background-color: rgb(33, 33, 85) !important;
+    border-color: rgb(33, 33, 85) !important;
+    color: white;
+    border-radius: 0.1 rem;
+}
+
+.cart-link:hover {
+    background-color: rgb(33, 33, 85) !important;
+    border-color: rgb(33, 33, 85) !important;
+}
+.footer {
+  padding-left: 0; 
+  padding-right: 0; 
+}
+
+  
