@@ -1,3 +1,4 @@
+// cart.js
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShopContext } from './shop-context';
@@ -10,7 +11,7 @@ import axios from 'axios';
 
 export const Cart = () => {
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
-  const totalAmount = getTotalCartAmount();
+  const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
@@ -61,6 +62,15 @@ export const Cart = () => {
 
     fetchCartItems();
   }, [cartItems]);
+
+  useEffect(() => {
+    const fetchTotalAmount = async () => {
+      const total = await getTotalCartAmount();
+      setTotalAmount(total);
+    };
+
+    fetchTotalAmount();
+  }, [getTotalCartAmount]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -153,178 +163,167 @@ export const Cart = () => {
           checkoutData={checkoutFormData}
         />
 
-<Card className="mt-4">
-        <Card.Body>
-          <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formFullName">
-      <Form.Label>Full Name</Form.Label>
-      <Form.Control
-        type="text"
-        name="fullName"
-        value={formData.fullName}
-        onChange={handleChange}
-        placeholder="John Doe"
-        isInvalid={!!errors.fullName}
-        maxLength={50}
-      />
-      <Form.Control.Feedback type="invalid">
-        {errors.fullName}
-      </Form.Control.Feedback>
-    </Form.Group>
+        <Card className="mt-4">
+          <Card.Body>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formFullName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  isInvalid={!!errors.fullName}
+                  maxLength={50}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.fullName}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-    <Form.Group className="mb-3" controlId="formEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="john.doe@example.com"
-        isInvalid={!!errors.email}
-        maxLength={50}
-      />
-      <Form.Control.Feedback type="invalid">
-        {errors.email}
-      </Form.Control.Feedback>
-    </Form.Group>
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  isInvalid={!!errors.email}
+                  maxLength={50}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-    <Form.Group className="mb-3" controlId="formAddress1">
-      <Form.Label>Address Line 1</Form.Label>
-      <Form.Control
-        type="text"
-        name="address1"
-        value={formData.address1}
-        onChange={handleChange}
-        placeholder="123 Main St"
-        isInvalid={!!errors.address1}
-        maxLength={100}
-      />
-      <Form.Control.Feedback type="invalid">
-        {errors.address1}
-      </Form.Control.Feedback>
-    </Form.Group>
+              <Form.Group className="mb-3" controlId="formAddress1">
+                <Form.Label>Address Line 1</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="address1"
+                  value={formData.address1}
+                  onChange={handleChange}
+                  isInvalid={!!errors.address1}
+                  maxLength={100}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.address1}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-    <div className="row">
-      <div className="col-md-4">
-        <Form.Group controlId="formCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            placeholder="Anytown"
-            isInvalid={!!errors.city}
-            maxLength={50}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.city}
-          </Form.Control.Feedback>
-        </Form.Group>
-      </div>
-      <div className="col-md-4">
-        <Form.Group controlId="formState">
-          <Form.Label>State</Form.Label>
-          <Form.Control
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            placeholder="CA"
-            isInvalid={!!errors.state}
-            maxLength={2}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.state}
-          </Form.Control.Feedback>
-        </Form.Group>
-      </div>
-      <div className="col-md-4">
-        <Form.Group controlId="formZip">
-          <Form.Label>Zip Code</Form.Label>
-          <Form.Control
-            type="text"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            placeholder="12345"
-            isInvalid={!!errors.zip}
-            maxLength={5}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.zip}
-          </Form.Control.Feedback>
-        </Form.Group>
-      </div>
-    </div>
-            <Form.Group className="mb-3" controlId="formCardNumber">
-              <Form.Label>Card Number</Form.Label>
-              <Form.Control
-                type="text"
-                name="cardNumber"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                placeholder="1234567890123456"
-                maxLength={16}
-                isInvalid={!!errors.cardNumber}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.cardNumber}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            {/* Similarly, repeat the pattern for other form fields */}
-            <Form.Group className="mb-3" controlId="formCardName">
-              <Form.Label>Cardholder's Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="cardName"
-                value={formData.cardName}
-                onChange={handleChange}
-                placeholder="John Doe"
-                isInvalid={!!errors.cardName}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.cardName}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <div className="row">
-              <div className="col-md-6">
-                <Form.Group controlId="formExpiration">
-                  <Form.Label>Expiration Date</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="expiration"
-                    value={formData.expiration}
-                    onChange={handleChange}
-                    placeholder="MM/YY"
-                    maxLength={5}
-                    isInvalid={!!errors.expiration}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.expiration}
-                  </Form.Control.Feedback>
-                </Form.Group>
+              <div className="row">
+                <div className="col-md-4">
+                  <Form.Group controlId="formCity">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      isInvalid={!!errors.city}
+                      maxLength={50}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.city}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+                <div className="col-md-4">
+                  <Form.Group controlId="formState">
+                    <Form.Label>State</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleChange}
+                      isInvalid={!!errors.state}
+                      maxLength={2}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.state}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+                <div className="col-md-4">
+                  <Form.Group controlId="formZip">
+                    <Form.Label>Zip Code</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="zip"
+                      value={formData.zip}
+                      onChange={handleChange}
+                      isInvalid={!!errors.zip}
+                      maxLength={5}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.zip}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
               </div>
-              <div className="col-md-6">
-                <Form.Group controlId="formCVV">
-                  <Form.Label>CVV</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="cvv"
-                    value={formData.cvv}
-                    onChange={handleChange}
-                    placeholder="345"
-                    maxLength={3}
-                    isInvalid={!!errors.cvv}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.cvv}
-                  </Form.Control.Feedback>
-                </Form.Group>
+              <Form.Group className="mb-3" controlId="formCardNumber">
+                <Form.Label>Card Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="cardNumber"
+                  value={formData.cardNumber}
+                  onChange={handleChange}
+                  maxLength={16}
+                  isInvalid={!!errors.cardNumber}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.cardNumber}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formCardName">
+                <Form.Label>Cardholder's Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="cardName"
+                  value={formData.cardName}
+                  onChange={handleChange}
+                  isInvalid={!!errors.cardName}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.cardName}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <div className="row">
+                <div className="col-md-6">
+                  <Form.Group controlId="formExpiration">
+                    <Form.Label>Expiration Date</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="expiration"
+                      value={formData.expiration}
+                      onChange={handleChange}
+                      maxLength={5}
+                      isInvalid={!!errors.expiration}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.expiration}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
+                <div className="col-md-6">
+                  <Form.Group controlId="formCVV">
+                    <Form.Label>CVV</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="cvv"
+                      value={formData.cvv}
+                      onChange={handleChange}
+                      maxLength={3}
+                      isInvalid={!!errors.cvv}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.cvv}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </div>
               </div>
-            </div>
               <Button variant="primary" type="submit">Checkout</Button>
             </Form>
           </Card.Body>

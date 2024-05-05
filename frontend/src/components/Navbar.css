@@ -24,8 +24,15 @@
     border-color: rgb(33, 33, 85) !important;
 }
 .footer {
-  padding-left: 0; 
-  padding-right: 0; 
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0; /* Adjust the padding as needed */
+  text-align: center;
+  background-color: white; /* Ensure the footer background is opaque */
+  z-index: 1000; /* Ensure the footer appears beneath other content */
 }
+
 
   

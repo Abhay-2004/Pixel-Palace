@@ -13,8 +13,9 @@
   }
   
   .login-box {
-    color: transparent; /* Make text and content invisible */
-    background-color: #fff;
+    color: white; /* Make text and content invisible */
+    background-color: #fff,
+    url(../Images/Home/Logo.jpeg);
     background-position: center; /* Center the background image */
     background-size: cover; /* Ensure the background image covers the entire box */
     padding: 10px; /* Decrease padding */
@@ -49,7 +50,7 @@
     border: 2px solid rgb(71, 69, 69) !important;
     border-radius: 4px;
     font-size: 18px;
-    text-shadow: 2px 2px 2px #000;
+
   }
   
   .submit-btn {
