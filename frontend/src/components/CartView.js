@@ -52,7 +52,7 @@ export const Cart = () => {
             return { ...response.data, id: itemId, quantity: cartItems[itemId] };
           }
         });
-
+    
         const items = await Promise.all(itemPromises);
         setCartItemsData(items.filter(Boolean));
       } catch (error) {
@@ -124,7 +124,7 @@ export const Cart = () => {
 
   return (
     <div>
-      <div className="cart">
+      <div className="cart" style={{ paddingBottom: '40px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '20px' }}>
           <h1>Your Cart Items</h1>
         </div>

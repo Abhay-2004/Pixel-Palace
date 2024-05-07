@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        fullName: 'John Doe',
+        email: 'john@example.com'
+    });
     const [actionType, setActionType] = useState('');
     const [id, setId] = useState('');
     const [formData, setFormData] = useState({
@@ -12,10 +18,15 @@ const Profile = () => {
         imageUrl: ''
     });
     const [message, setMessage] = useState('');
-    const [user, setUser] = useState({
-        fullName: 'John Doe', // Placeholder, replace with actual user data from login
-        email: 'john@example.com' // Placeholder, replace with actual user data from login
-    });
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -52,9 +63,14 @@ const Profile = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        navigate('/login');
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const type = actionType.split(' ')[1].toLowerCase(); // 'Laptop' or 'Phone'
+        const type = actionType.split(' ')[1].toLowerCase();
         const url = `http://localhost:8081/${type}s/${id}`;
 
         try {
@@ -69,6 +85,7 @@ const Profile = () => {
                 setMessage('Item added successfully!');
             }
             resetForm();
+            navigate(`/${type}s`);
         } catch (error) {
             setMessage(`Failed to ${actionType.toLowerCase()} item.`);
         }
@@ -93,6 +110,7 @@ const Profile = () => {
                         <li><button className="dropdown-item" onClick={() => selectAction('Delete Phone')}>Delete Phone</button></li>
                     </ul>
                 </div>
+                <button className="btn btn-danger mt-3" onClick={handleLogout}>Logout</button>
 
                 {(actionType.startsWith('Add') || actionType.startsWith('Update')) && (
                     <form onSubmit={handleSubmit} className="mt-3">

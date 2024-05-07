@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import laptop from './laptops_data.json';
-import phone from './phones.json'; 
+import phone from './phones.json';
 
 export const ShopContext = createContext(null);
 

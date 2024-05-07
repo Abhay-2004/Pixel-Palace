@@ -22,10 +22,11 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:8081/login', credentials);
             setMessage('Login successful!');
+            localStorage.setItem('user', JSON.stringify(response.data.user)); // Store user data in local storage
             navigate('/profile', { state: { user: response.data.user } });
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                setMessage(error.response.data.message); // Display specific error from backend
+                setMessage(error.response.data.message);
             } else {
                 setMessage('Login error. Please try again.');
             }
@@ -34,11 +35,11 @@ const Login = () => {
     
 
     return (
-        <div className="login-container"> {/* Apply the login-container class */}
+        <div className="login-container">
             <Navbar />
-            <div className="login-box"> {/* Apply the login-box class */}
+            <div className="login-box">
                 <h2>Login</h2>
-                <form onSubmit={handleSubmit} className="login-form"> {/* Apply the login-form class */}
+                <form onSubmit={handleSubmit} className="login-form">
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
                         <input type="email" className="form-control input-field" id="email" name="email" value={credentials.email} onChange={handleInputChange} required />
